@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>포켓몬 동물원</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #cfefff;
+      background-image: url("하늘.gif");
+      background-repeat: repeat;
+      background-size: 50% 50%;
+      background-position: 0 0;
+      background-attachment: fixed;
+      font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif;
+    }
+    .wrap { height: 100%; display: grid; place-items: center; }
+    .stage {
+      position: relative;
+      width: 960px;
+      height: 600px;
+      background: url("배경.png") no-repeat center/contain;
+    }
+    .pokemon {
+      position: absolute;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+      image-rendering: pixelated;
+    }
+
+    #pikachu   { left: 100px; top: 165px; width: 150px; }
+    #squirtle  { left: 300px; top: 205px; width: 125px; }
+    #snorlax   { left: 500px; top: -20px; width: 240px; }
+    #eevee     { left: 550px; top: 220px; width: 150px; }
+    #togepi    { left: 95px;  top: 370px; width: 115px; }
+    #pachirisu { left: 700px; top: 300px; width: 150px; }
+    #drifloon  { left: 750px; top: -80px; width: 150px; }
+    #dunsparce { left: 330px; top: 360px; width: 170px; }
+    #weedle    { left: 480px; top: 320px; width: 80px; }
+    #chansey   { left: 160px; top: -70px; width: 300px; }
+    #bulbasaur { left: 590px; top: 390px; width: 140px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="stage">
+      <img id="pikachu"   class="pokemon" src="피카츄.gif"   alt="피카츄">
+      <img id="squirtle"  class="pokemon" src="꼬부기.gif"   alt="꼬부기">
+      <img id="snorlax"   class="pokemon" src="잠만보.gif"   alt="잠만보">
+      <img id="eevee"     class="pokemon" src="이브이.gif"   alt="이브이">
+      <img id="togepi"    class="pokemon" src="토게피.gif"   alt="토게피">
+      <img id="pachirisu" class="pokemon" src="파치리스.gif" alt="파치리스">
+      <img id="drifloon"  class="pokemon" src="흔들풍손.gif" alt="흔들풍손">
+      <img id="dunsparce" class="pokemon" src="노고치.gif"   alt="노고치">
+      <img id="weedle"    class="pokemon" src="뿔충이.gif"   alt="뿔충이">
+      <img id="chansey"   class="pokemon" src="럭키.gif"     alt="럭키">
+      <img id="bulbasaur" class="pokemon" src="이상해씨.gif" alt="이상해씨">
+    </div>
+  </div>
+
+  <audio id="pikachuSound"   src="피카츄.mp3"   preload="auto"></audio>
+  <audio id="squirtleSound"  src="꼬부기.mp3"   preload="auto"></audio>
+  <audio id="snorlaxSound"   src="잠만보.mp3"   preload="auto"></audio>
+  <audio id="eeveeSound"     src="이브이.mp3"   preload="auto"></audio>
+  <audio id="togepiSound"    src="토게피.mp3"   preload="auto"></audio>
+  <audio id="pachirisuSound" src="파치리스.mp3" preload="auto"></audio>
+  <audio id="drifloonSound"  src="흔들풍손.mp3" preload="auto"></audio>
+  <audio id="dunsparceSound" src="노고치.mp3"   preload="auto"></audio>
+  <audio id="weedleSound"    src="뿔충이.mp3"   preload="auto"></audio>
+  <audio id="chanseySound"   src="럭키.mp3"     preload="auto"></audio>
+  <audio id="bulbasaurSound" src="이상해씨.mp3" preload="auto"></audio>
+
+  <script>
+    const el = {
+      pikachu:    document.getElementById('pikachu'),
+      squirtle:   document.getElementById('squirtle'),
+      snorlax:    document.getElementById('snorlax'),
+      eevee:      document.getElementById('eevee'),
+      togepi:     document.getElementById('togepi'),
+      pachirisu:  document.getElementById('pachirisu'),
+      drifloon:   document.getElementById('drifloon'),
+      dunsparce:  document.getElementById('dunsparce'),
+      weedle:     document.getElementById('weedle'),
+      chansey:    document.getElementById('chansey'),
+      bulbasaur:  document.getElementById('bulbasaur')
+    };
+
+    const snd = {
+      pikachu:    document.getElementById('pikachuSound'),
+      squirtle:   document.getElementById('squirtleSound'),
+      snorlax:    document.getElementById('snorlaxSound'),
+      eevee:      document.getElementById('eeveeSound'),
+      togepi:     document.getElementById('togepiSound'),
+      pachirisu:  document.getElementById('pachirisuSound'),
+      drifloon:   document.getElementById('drifloonSound'),
+      dunsparce:  document.getElementById('dunsparceSound'),
+      weedle:     document.getElementById('weedleSound'),
+      chansey:    document.getElementById('chanseySound'),
+      bulbasaur:  document.getElementById('bulbasaurSound')
+    };
+
+    function playFromStart(a){ a.pause(); a.currentTime = 0; a.play().catch(()=>{}); }
+
+    Object.keys(el).forEach(k=>{
+      el[k].addEventListener('click', ()=> playFromStart(snd[k]));
+      el[k].addEventListener('touchstart', e=>{ e.preventDefault(); playFromStart(snd[k]); }, {passive:false});
+    });
+  </script>
+</body>
+</html>
